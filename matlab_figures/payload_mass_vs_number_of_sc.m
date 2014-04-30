@@ -84,8 +84,14 @@ plot_spacecraft(TorESA)
 plot_m4(M4BigMum)
 plot_m4(M4MumSonI)
 plot_m4(M4MumSonII)
+line([M4MumSonI.nSc M4MumSonII.nSc ],...
+	[M4MumSonI.mPayload M4MumSonII.mPayload ],...
+	'linestyle',':','color','r');
 plot_m4(M4MumDaughterI)
 plot_m4(M4MumDaughterII)
+line([M4MumDaughterI.nSc M4MumDaughterII.nSc ],...
+	[M4MumDaughterI.mPayload M4MumDaughterII.mPayload ],...
+	'linestyle',':','color','r');
 plot_m4(M4MotherMother)
 plot_m4(M4MotherFather,'verticalalignment','top')
 plot_m4(M4Sisters)
