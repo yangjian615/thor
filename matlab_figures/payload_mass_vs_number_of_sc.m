@@ -10,11 +10,11 @@ Cluster = struct('nSc',4,'mPayload',71,'name','Cluster');
 CrossScaleI = struct('nSc',10,'mPayload',40,'name','Cross-Scale I');
 CrossScaleII= struct('nSc',7,'mPayload',30,'name','Cross-Scale II');
 EIDOSCOPE   = struct('nSc',1, 'mPayload',40,'name','EIDOSCOPE');
-MMS = struct('nSc',4,'mPayload',100,'name','MMS');
+MMS = struct('nSc',4,'mPayload',160,'name','MMS');
 THEMIS      = struct('nSc',5, 'mPayload',24,'name','THEMIS');
 TorESA      = struct('nSc',1, 'mPayload',26,'name','Tor');
 
-M4BigMum      = struct('nSc',1,  'mPayload',170,'name','BM','nameLong','Big Mother');
+M4BigMum      = struct('nSc',1,  'mPayload',150,'name','THOR','nameLong','Big Mother');
 M4MumSonI     = struct('nSc',1.3,'mPayload',125,'name','MS','nameLong','Mother Son');
 M4MumSonII    = struct('nSc',1.3,'mPayload',19, 'name','MS','nameLong','Mother Son');
 M4MumDaughterI= struct('nSc',1.5,'mPayload',105,'name','MD','nameLong','Mother Daughters');
@@ -82,21 +82,7 @@ plot_spacecraft(THEMIS,'verticalalignment','top')
 plot_spacecraft(TorESA)
 
 plot_m4(M4BigMum)
-plot_m4(M4MumSonI)
-plot_m4(M4MumSonII)
-line([M4MumSonI.nSc M4MumSonII.nSc ],...
-	[M4MumSonI.mPayload M4MumSonII.mPayload ],...
-	'linestyle',':','color','r');
-plot_m4(M4MumDaughterI)
-plot_m4(M4MumDaughterII)
-line([M4MumDaughterI.nSc M4MumDaughterII.nSc ],...
-	[M4MumDaughterI.mPayload M4MumDaughterII.mPayload ],...
-	'linestyle',':','color','r');
-plot_m4(M4MotherMother)
-%plot_m4(M4MotherFather,'verticalalignment','top')
-%plot_m4(M4Sisters)
-
-legend_m4(M4BigMum,M4MumSonI,M4MumDaughterI,M4MotherMother)
+%legend_m4(M4BigMum)
 
 irf_legend(h,[datestr(now,31) '  ' mfilename],[0.99 1.01],...
 	'fontsize',6,'interpreter','none','color',[0.9 0.9 0.9])
