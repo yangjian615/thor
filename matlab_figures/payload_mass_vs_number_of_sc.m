@@ -14,17 +14,17 @@ MMS = struct('nSc',4,'mPayload',100,'name','MMS');
 THEMIS      = struct('nSc',5, 'mPayload',24,'name','THEMIS');
 TorESA      = struct('nSc',1, 'mPayload',26,'name','Tor');
 
-M4BigMum      = struct('nSc',1,  'mPayload',225,'name','BM','nameLong','Big Mother');
-M4MumSonI     = struct('nSc',1.3,'mPayload',158,'name','MS','nameLong','Mother Son');
-M4MumSonII    = struct('nSc',1.3,'mPayload',11, 'name','MS','nameLong','Mother Son');
-M4MumDaughterI= struct('nSc',1.5,'mPayload',135,'name','MD','nameLong','Mother Daughters');
-M4MumDaughterII= struct('nSc',1.5,'mPayload',3,'name','MD','nameLong','Mother Daughters');
-M4MotherMother= struct('nSc',2,  'mPayload',90, 'name','MM','nameLong','Mother Mother');
-M4MotherFather= struct('nSc',2,  'mPayload',79, 'name','MF','nameLong','Mother Father');
-M4Sisters     = struct('nSc',3,  'mPayload',50, 'name','S', 'nameLong','Sisters');
+M4BigMum      = struct('nSc',1,  'mPayload',170,'name','BM','nameLong','Big Mother');
+M4MumSonI     = struct('nSc',1.3,'mPayload',125,'name','MS','nameLong','Mother Son');
+M4MumSonII    = struct('nSc',1.3,'mPayload',19, 'name','MS','nameLong','Mother Son');
+M4MumDaughterI= struct('nSc',1.5,'mPayload',105,'name','MD','nameLong','Mother Daughters');
+M4MumDaughterII= struct('nSc',1.5,'mPayload',12,'name','MD','nameLong','Mother Daughters');
+M4MotherMother= struct('nSc',2,  'mPayload',85, 'name','MM','nameLong','Mother Mother');
+%M4MotherFather= struct('nSc',2,  'mPayload',79, 'name','MF','nameLong','Mother Father');
+%M4Sisters     = struct('nSc',3,  'mPayload',50, 'name','S', 'nameLong','Sisters');
 
 Lclass = struct('mLim',300*[1 1.4],'name','L'); % payload mass for single s/c
-Mclass = struct('mLim',180*[1 1.4],'name','M'); % payload mass for single s/c
+Mclass = struct('mLim',140*[1 1.4],'name','M'); % payload mass for single s/c
 Sclass = struct('mLim', 10*[1 1.4],'name','S'); % payload mass for single s/c
 
 ScProps = {'MarkerSize',30,'MarkerEdgeColor','b'};
@@ -93,10 +93,10 @@ line([M4MumDaughterI.nSc M4MumDaughterII.nSc ],...
 	[M4MumDaughterI.mPayload M4MumDaughterII.mPayload ],...
 	'linestyle',':','color','r');
 plot_m4(M4MotherMother)
-plot_m4(M4MotherFather,'verticalalignment','top')
-plot_m4(M4Sisters)
+%plot_m4(M4MotherFather,'verticalalignment','top')
+%plot_m4(M4Sisters)
 
-legend_m4(M4BigMum,M4MumSonI,M4MumDaughterI,M4MotherMother,M4MotherFather,M4Sisters)
+legend_m4(M4BigMum,M4MumSonI,M4MumDaughterI,M4MotherMother)
 
 irf_legend(h,[datestr(now,31) '  ' mfilename],[0.99 1.01],...
 	'fontsize',6,'interpreter','none','color',[0.9 0.9 0.9])
