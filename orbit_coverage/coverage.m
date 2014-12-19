@@ -1,14 +1,14 @@
 RE = 6371*1e3; % m, Earth radius
 
 % define orbits
-r_aps = ([15 25 61]+1)*RE; % m, apogee
-r_pers = ([3 3 13]+1)*RE; % m, perigee
+r_aps = ([15 25 61]+0); % m, apogee
+r_pers = ([3 3 13]+0); % m, perigee
 TtotOrb = [1 1 1]*60*60*24*365; % the time to spend in that orbit
 
 dt = 120; % s, timestep, 120s=2min 
 t=0; x=[]; y=[];
 for orb = [1 2 3]; 
-    [tOrb,xOrb,yOrb] = orbit(r_pers(orb),r_aps(orb),dt,round(TtotOrb(orb)));
+    [tOrb,xOrb,yOrb] = orbit(r_pers(orb),r_aps(orb),round(TtotOrb(orb)),'E','dt',dt);
     % add all orbits in same vectors
     t = [t tOrb+t(end) NaN];
     x = [x xOrb NaN];
@@ -116,30 +116,41 @@ if 1 % figure with bowshock + magnetopause
     R_MP = sort(A{2}); % RE
     N = numel(R_BS);
     indR = round([1 0.25*N 0.5*N 0.75*N N]); % percentiles
-    linestyle = {'--','--','-','--','--'};
+    %linestyle = {'--','--','-','--','--'};
+    linewidth = [1.5 1.5 3 1.5 1.5];
     
     cMP = [0 0.0 1];
     cBS = [1 0.0 0];    
-    for kk = 1:numel(indR)
+    for kk = 1:numel(indR)%numel(indR):-1:1%1:numel(indR)
         [xmp,ymp] = boundary(R_MP(indR(kk)),'mp');
-        plot(hca,-xmp,ymp,'linewidth',2,'color',cMP,'linestyle',linestyle{kk})
+        plot(hca,-xmp,ymp,'linewidth',linewidth(kk),'color',cMP,'linestyle','--')
         [xbs,ybs] = boundary(R_BS(indR(kk)),'bs');
-        plot(hca,-xbs,ybs,'linewidth',2,'color',cBS,'linestyle',linestyle{kk})
+        plot(hca,-xbs,ybs,'linewidth',linewidth(kk),'color',cBS,'linestyle','-')
     end   
        
     % other stuff
     box(hca,'on')
-    set(hca,'ylim',[-25 25],'xlim',[-35 15])
+    set(hca,'ylim',[-20 20],'xlim',[-30 10])
     axis(hca,'square')
     
-    % flip x labels   
+    % flip x and y labels   
     xticks = get(hca,'xtick'); nticks = numel(xticks);
     xlabels = repmat(' ',nticks,3);
     for pp = 1:numel(xticks)
         xstr = num2str(-xticks(pp)); 
         xlabels(pp,1:numel(xstr)) = xstr;
     end
-    set(hca,'xticklabel',xlabels)
+    yticks = get(hca,'ytick'); nticks = numel(yticks);
+    ylabels = repmat(' ',nticks,3);
+    for pp = 1:numel(yticks)
+        ystr = num2str(-yticks(pp)); 
+        ylabels(pp,1:numel(ystr)) = ystr;
+    end
+    set(hca,'xticklabel',xlabels,'yticklabel',ylabels)
+    
+    % add Earth
+    patch(cos(-pi/2:0.01:pi/2),sin(-pi/2:0.01:pi/2),'k')    
+    plot(cos(pi/2:0.01:pi*4/2),sin(pi/2:0.01:pi*4/2),'k')
     
     % set font size
     set(gcf,'defaultAxesFontSize',16);
